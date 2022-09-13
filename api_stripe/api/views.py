@@ -31,10 +31,12 @@ class CreateCheckoutSessionView(View):
                 "item_id": item.id
             },
             mode='payment',
+            success_url: 'https://example.com/success',
+            cancel_url: 'https://example.com/cancel',
         )
-        return JsonResponse({'session_id': session.id})
-
-
-def item_router(request, item_id):
+        return stripe.redirectToCheckout({'session_id': session.id})
+    
+    def item_router(request, item_id):
     item = Item.objects.get(id=item_id)
     return render(request, "templates/item.html", context=model_to_dict(item))
+
