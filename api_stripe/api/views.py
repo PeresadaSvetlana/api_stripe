@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from .models import Item
 from django.shortcuts import render
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = 'sk_test_51LgsIxDOqQHVZ6140CbuDPJ1OGcgTY5kPKaAPdSvpt34AWYoYuGquZ2hyNdMBUAbN1qXpqnmgeGfnNsH5ccJTEDw00BeQEoV7v'
 
 
 class CreateCheckoutSessionView(View):
