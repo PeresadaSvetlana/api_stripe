@@ -10,7 +10,7 @@ stripe.api_key = 'sk_test_51LgsIxDOqQHVZ6140CbuDPJ1OGcgTY5kPKaAPdSvpt34AWYoYuGqu
 
 
 class CreateCheckoutSessionView(View):
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         item_id = self.kwargs["pk"]
         item = Item.objects.get(id=item_id)
         session = stripe.checkout.Session.create(
