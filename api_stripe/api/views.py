@@ -13,7 +13,7 @@ class ItemView(TemplateView):
     template_name = 'templates/item.html'
 
     def get_context_data(self, **kwargs):
-        pk = self.kwargs.get('pk')
+        pk = self.kwargs['pk']
         item = Item.objects.get(pk=pk)
         context = super(ItemView, self).get_context_data(**kwargs)
         context.update({
@@ -25,32 +25,27 @@ class ItemView(TemplateView):
 
 class CreateCheckoutSessionView(View):
     def get(self, request, *args, **kwargs):
-        item_id = self.kwargs["pk"]
-        item = Item.objects.get(id=item_id)
+        pk = self.kwargs['pk']
+        item = Item.objects.get(pk=pk)
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'rub',
-                        'unit_amount': item.price,
-                        'item_data': {
-                            'name': item.name,
-                        },
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': item.name,
                     },
-                    'quantity': 1,
+                    'unit_amount': item.price,
                 },
-            ],
+                'quantity': 1,
+            }],
             metadata={
                 "item_id": item.id
             },
             mode='payment',
+            success_url='https://example.com/success',
+            cancel_url='https://example.com/cancel',
         )
         return JsonResponse({
             'id': session.id
         })
-
-    def item_router(request, item_id):
-        item = Item.objects.get(id=item_id)
-        return render(request, "templates/item.html", context=model_to_dict(item))
-
