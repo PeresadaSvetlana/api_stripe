@@ -1,16 +1,14 @@
 import stripe
 from django.views import View
 from django.views.generic import TemplateView
-from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from .models import Item
-from django.shortcuts import render
 
 stripe.api_key = 'sk_test_51LgsIxDOqQHVZ6140CbuDPJ1OGcgTY5kPKaAPdSvpt34AWYoYuGquZ2hyNdMBUAbN1qXpqnmgeGfnNsH5ccJTEDw00BeQEoV7v'
 
 
 class ItemView(TemplateView):
-    template_name = 'templates/item.html'
+    template_name = 'item.html'
 
     def get_context_data(self, **kwargs):
         pk = self.kwargs['pk']
