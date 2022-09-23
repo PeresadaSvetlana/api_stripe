@@ -1,10 +1,14 @@
 import stripe
+import os
 from django.views import View
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from .models import Item
+from dotenv import load_dotenv
 
-stripe.api_key = 'sk_test_51LgsIxDOqQHVZ6140CbuDPJ1OGcgTY5kPKaAPdSvpt34AWYoYuGquZ2hyNdMBUAbN1qXpqnmgeGfnNsH5ccJTEDw00BeQEoV7v'
+load_dotenv()
+
+stripe.api_key = os.getenv('STRIPE_PRIVATE_KEY')
 
 
 class ItemView(TemplateView):
