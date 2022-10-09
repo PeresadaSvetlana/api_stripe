@@ -22,7 +22,7 @@ DB_PASSWORD=<пароль>
 DB_HOST=<db>
 DB_PORT=<5432>
 SECRET_KEY=<секретный ключ проекта django>
-STRIPE_PRIVATE_KEY =<секретный ключ stripe>
+STRIPE_PRIVATE_KEY=<секретный ключ stripe>
 ```
 Выполнить команду:
 
