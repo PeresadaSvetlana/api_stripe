@@ -34,4 +34,7 @@ docker-compose exec web python manage.py createsuperuser
 docker-compose exec web python manage.py collectstatic --no-input
 
 ```
+
+```
 Проект запуен на Яндекс.Облаке проверить работу можно по ссылке: http://51.250.20.38/item/1/
+```
